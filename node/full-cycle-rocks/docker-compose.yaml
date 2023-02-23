@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  node:
+    image: kotayz/node-full-cycle:latest
+    container_name: full-cycle-node
+    networks:
+      - fullcyclenet
+
+  nginx:
+    image: kotayz/nginx-full-cycle:latest
+    container_name: full-cycle-nginx
+    networks:
+      - fullcyclenet
+    ports:
+      - 8080:80
+
+networks:
+  fullcyclenet:
+    driver: bridge
