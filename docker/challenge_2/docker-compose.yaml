@@ -2,12 +2,18 @@ version: '3'
 
 services:
   node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
     image: kotayz/node-full-cycle:latest
     container_name: full-cycle-node
     networks:
       - fullcyclenet
 
   nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     image: kotayz/nginx-full-cycle:latest
     container_name: full-cycle-nginx
     networks:
