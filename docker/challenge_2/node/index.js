@@ -28,7 +28,6 @@ app.get('/', (req, res) => {
     Object.keys(results).forEach(function(key) {
       var row = results[key];
       message = message + '<h2>' + row.name + '</h2>'
-      //console.log(row.name)
     });
 
     res.send(message)
