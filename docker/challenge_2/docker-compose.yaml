@@ -21,10 +21,13 @@ services:
       dockerfile: Dockerfile
     image: kotayz/nginx-full-cycle:latest
     container_name: full-cycle-nginx
+    entrypoint: dockerize -wait tcp://node:3000 -timeout 20s nginx -g "daemon off";
     networks:
       - fullcyclenet
     ports:
       - 8080:80
+    depends_on:
+      - node
 
   node:
     build:
@@ -32,9 +35,12 @@ services:
       dockerfile: Dockerfile
     image: kotayz/node-full-cycle:latest
     container_name: full-cycle-node
+    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s node index.js
     networks:
       - fullcyclenet
     tty: true
+    depends_on:
+      - mysql
 
 networks:
   fullcyclenet:
