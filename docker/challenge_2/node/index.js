@@ -19,9 +19,11 @@ connection.query(createTable)
 const insert = `INSERT INTO people(name) values('Sophia'), ('Scarlett'), ('Stella'), ('Sebastian'), ('Samuel'), ('Santiago')`
 connection.query(insert)
 
+connection.end()
+
 app.get('/', (req, res) => {
   var message = '<h1>Full Cycle Rocks!</h1>'
-
+  const connection = mysql.createConnection(config)
   connection.query('SELECT * FROM people', function (error, results, fields) {
     if (error) throw error;
 
@@ -32,10 +34,10 @@ app.get('/', (req, res) => {
 
     res.send(message)
   })
- 
-  
   connection.end()
 })
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
