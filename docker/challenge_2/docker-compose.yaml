@@ -21,7 +21,6 @@ services:
       dockerfile: Dockerfile
     image: kotayz/nginx-full-cycle:latest
     container_name: full-cycle-nginx
-    entrypoint: dockerize -wait tcp://node:3000 -timeout 20s nginx -g "daemon off";
     networks:
       - fullcyclenet
     ports:
